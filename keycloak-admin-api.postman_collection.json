@@ -1,0 +1,1238 @@
+{
+	"info": {
+		"_postman_id": "0434b320-73db-4ef9-ab53-311cb8da9b5f",
+		"name": "keycloak-admin-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Email Login Flow",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response is ok\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var json = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Your test name\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    var token = jsonData.access_token;\r",
+									"    var refreshToken = jsonData.refresh_token;\r",
+									"    pm.environment.set(\"access_token\", token);\r",
+									"    pm.environment.set(\"refresh_token\", refreshToken);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client_id",
+									"value": "api-services",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "e412bfca-2e9b-483e-baea-6c11526dc0ad",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "abinashkg+1@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{keycloak_url}}/auth/realms/{{realm}}/protocol/openid-connect/token",
+							"host": [
+								"{{keycloak_url}}"
+							],
+							"path": [
+								"auth",
+								"realms",
+								"{{realm}}",
+								"protocol",
+								"openid-connect",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response is ok\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var json = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Your test name\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    var token = jsonData.access_token;\r",
+									"    var refreshToken = jsonData.refresh_token;\r",
+									"    pm.environment.set(\"client_access_token\", token);\r",
+									"    pm.environment.set(\"client_refresh_token\", refreshToken);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client_id",
+									"value": "admin-cli",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{keycloak_url}}/auth/realms/master/protocol/openid-connect/token",
+							"host": [
+								"{{keycloak_url}}"
+							],
+							"path": [
+								"auth",
+								"realms",
+								"master",
+								"protocol",
+								"openid-connect",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Client Credentials token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response is ok\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var json = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Your test name\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    var token = jsonData.access_token;\r",
+									"    var refreshToken = jsonData.refresh_token;\r",
+									"    pm.environment.set(\"access_token\", token);\r",
+									"    pm.environment.set(\"refresh_token\", refreshToken);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client_id",
+									"value": "admin-cli",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{keycloak_url}}/auth/realms/master/protocol/openid-connect/token",
+							"host": [
+								"{{keycloak_url}}"
+							],
+							"path": [
+								"auth",
+								"realms",
+								"master",
+								"protocol",
+								"openid-connect",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Token using refresh token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response is ok\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var json = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Your test name\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    var token = jsonData.access_token;\r",
+									"    var refreshToken = jsonData.refresh_token;\r",
+									"    pm.environment.set(\"access_token\", token);\r",
+									"    pm.environment.set(\"refresh_token\", refreshToken);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client_id",
+									"value": "api-services",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "e412bfca-2e9b-483e-baea-6c11526dc0ad",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "refresh_token",
+									"type": "text"
+								},
+								{
+									"key": "refresh_token",
+									"value": "{{refresh_token}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{keycloak_url}}/auth/realms/{{realm}}/protocol/openid-connect/token",
+							"host": [
+								"{{keycloak_url}}"
+							],
+							"path": [
+								"auth",
+								"realms",
+								"{{realm}}",
+								"protocol",
+								"openid-connect",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User Info",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response is ok\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var json = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Your test name\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    var user_id = jsonData.sub;\r",
+									"    pm.environment.set(\"user_id\", user_id);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{keycloak_url}}/auth/realms/{{realm}}/protocol/openid-connect/userinfo",
+							"host": [
+								"{{keycloak_url}}"
+							],
+							"path": [
+								"auth",
+								"realms",
+								"{{realm}}",
+								"protocol",
+								"openid-connect",
+								"userinfo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\":\"password\",\r\n    \"value\":\"12345678\",\r\n    \"temporary\":false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{keycloak_url}}/auth/admin/realms/{{realm}}/users/{{user_id}}/reset-password",
+							"host": [
+								"{{keycloak_url}}"
+							],
+							"path": [
+								"auth",
+								"admin",
+								"realms",
+								"{{realm}}",
+								"users",
+								"{{user_id}}",
+								"reset-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Registration",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{client_access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\":\"Sergey\",\r\n    \"lastName\":\"Kargopolov\", \r\n    \"email\":\"test1@test.com\", \r\n    \"enabled\":\"true\", \r\n    \"username\":\"test1@test.com\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{keycloak_url}}/auth/admin/realms/{{realm}}/users",
+							"host": [
+								"{{keycloak_url}}"
+							],
+							"path": [
+								"auth",
+								"admin",
+								"realms",
+								"{{realm}}",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Secure Spring Boot App",
+			"item": [
+				{
+					"name": "User Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response is ok\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var json = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Your test name\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    var token = jsonData.access_token;\r",
+									"    var refreshToken = jsonData.refresh_token;\r",
+									"    pm.environment.set(\"access_token\", token);\r",
+									"    pm.environment.set(\"refresh_token\", refreshToken);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client_id",
+									"value": "api-services",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "e412bfca-2e9b-483e-baea-6c11526dc0ad",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "abinashkg+1@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{keycloak_url}}/auth/realms/{{realm}}/protocol/openid-connect/token",
+							"host": [
+								"{{keycloak_url}}"
+							],
+							"path": [
+								"auth",
+								"realms",
+								"{{realm}}",
+								"protocol",
+								"openid-connect",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response is ok\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var json = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Your test name\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    var token = jsonData.access_token;\r",
+									"    var refreshToken = jsonData.refresh_token;\r",
+									"    pm.environment.set(\"access_token\", token);\r",
+									"    pm.environment.set(\"refresh_token\", refreshToken);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client_id",
+									"value": "api-services",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "e412bfca-2e9b-483e-baea-6c11526dc0ad",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "mlbd.cm@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{keycloak_url}}/auth/realms/{{realm}}/protocol/openid-connect/token",
+							"host": [
+								"{{keycloak_url}}"
+							],
+							"path": [
+								"auth",
+								"realms",
+								"{{realm}}",
+								"protocol",
+								"openid-connect",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Profile",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api_url}}/test/admin",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"test",
+								"admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Profile",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api_url}}/test/user",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"test",
+								"user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"response is ok\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var json = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    var token = jsonData.access_token;\r",
+							"    var refreshToken = jsonData.refresh_token;\r",
+							"    pm.environment.set(\"access_token\", token);\r",
+							"    pm.environment.set(\"refresh_token\", refreshToken);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "frontend",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "kerri",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "kerri",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "332e78cb-0487-46a8-949d-7c2a09cd380c",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{keycloak_url}}/auth/realms/balambgarden/protocol/openid-connect/token",
+					"host": [
+						"{{keycloak_url}}"
+					],
+					"path": [
+						"auth",
+						"realms",
+						"balambgarden",
+						"protocol",
+						"openid-connect",
+						"token"
+					],
+					"query": [
+						{
+							"key": "client_id",
+							"value": "api-services",
+							"disabled": true
+						},
+						{
+							"key": "username",
+							"value": "kerri",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "kerri",
+							"disabled": true
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"disabled": true
+						},
+						{
+							"key": "client_secret",
+							"value": "332e78cb-0487-46a8-949d-7c2a09cd380c",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Hello",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_url}}/keycloak/hello",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"keycloak",
+						"hello"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Roles",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_url}}/keycloak/roles",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"keycloak",
+						"roles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Profile",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_url}}/keycloak/profile",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"keycloak",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{keycloak_url}}/auth/realms/balambgarden/protocol/openid-connect/token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"response is ok\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var json = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    var token = jsonData.access_token;\r",
+							"    var refreshToken = jsonData.refresh_token;\r",
+							"    pm.environment.set(\"access_token\", token);\r",
+							"    pm.environment.set(\"refresh_token\", refreshToken);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "frontend",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "kerri",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "kerri",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "grant_type",
+							"value": "authorization_code",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "332e78cb-0487-46a8-949d-7c2a09cd380c",
+							"type": "text"
+						},
+						{
+							"key": "code",
+							"value": "0a19525e-e7e9-48c3-be34-c6740629ec68.61e2ef1c-3eeb-48c0-a9aa-b2f46438be37.edf17d14-0b30-4702-ace0-098bf0c5e839",
+							"type": "text"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "http://localhost:8081",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "openid",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{keycloak_url}}/auth/realms/balambgarden/protocol/openid-connect/token",
+					"host": [
+						"{{keycloak_url}}"
+					],
+					"path": [
+						"auth",
+						"realms",
+						"balambgarden",
+						"protocol",
+						"openid-connect",
+						"token"
+					],
+					"query": [
+						{
+							"key": "client_id",
+							"value": "frontend",
+							"disabled": true
+						},
+						{
+							"key": "redirect_uri",
+							"value": "http://localhost:8080/auth/realms/balambgarden/account",
+							"disabled": true
+						},
+						{
+							"key": "state",
+							"value": "STATE",
+							"disabled": true
+						},
+						{
+							"key": "response_type",
+							"value": "code",
+							"disabled": true
+						},
+						{
+							"key": "scope",
+							"value": "openid",
+							"disabled": true
+						},
+						{
+							"key": "kc_idp_hint",
+							"value": "google",
+							"disabled": true
+						},
+						{
+							"key": "username",
+							"value": "kerri",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "kerri",
+							"disabled": true
+						},
+						{
+							"key": "grant_type",
+							"value": "authorization_code",
+							"disabled": true
+						},
+						{
+							"key": "client_secret",
+							"value": "332e78cb-0487-46a8-949d-7c2a09cd380c",
+							"disabled": true
+						},
+						{
+							"key": "code",
+							"value": "6c4fac69-d22f-4ca8-9001-e13a6a8a9217.61d81f36-1f40-4b62-8de3-fd148d9f9d21.edf17d14-0b30-4702-ace0-098bf0c5e839",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{keycloak_url}}/auth/realms/balambgarden/protocol/openid-connect/auth?client_id=frontend&redirect_uri=http://localhost:8081&state=STATE&response_type=code&scope=openid&kc_idp_hint=google",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"response is ok\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var json = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    var token = jsonData.access_token;\r",
+							"    var refreshToken = jsonData.refresh_token;\r",
+							"    pm.environment.set(\"access_token\", token);\r",
+							"    pm.environment.set(\"refresh_token\", refreshToken);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "frontend",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "username",
+							"value": "kerri",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "kerri",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "client_secret",
+							"value": "332e78cb-0487-46a8-949d-7c2a09cd380c",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{keycloak_url}}/auth/realms/balambgarden/protocol/openid-connect/auth?client_id=frontend&redirect_uri=http://localhost:8081&state=STATE&response_type=code&scope=openid&kc_idp_hint=google",
+					"host": [
+						"{{keycloak_url}}"
+					],
+					"path": [
+						"auth",
+						"realms",
+						"balambgarden",
+						"protocol",
+						"openid-connect",
+						"auth"
+					],
+					"query": [
+						{
+							"key": "client_id",
+							"value": "frontend"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "http://localhost:8081"
+						},
+						{
+							"key": "state",
+							"value": "STATE"
+						},
+						{
+							"key": "response_type",
+							"value": "code"
+						},
+						{
+							"key": "scope",
+							"value": "openid"
+						},
+						{
+							"key": "nonce",
+							"value": "NONCE",
+							"disabled": true
+						},
+						{
+							"key": "kc_idp_hint",
+							"value": "google"
+						},
+						{
+							"key": "username",
+							"value": "kerri",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "kerri",
+							"disabled": true
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"disabled": true
+						},
+						{
+							"key": "client_secret",
+							"value": "332e78cb-0487-46a8-949d-7c2a09cd380c",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
